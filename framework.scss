@@ -1,0 +1,82 @@
+$primaryColor: lightblue;
+$nbColumns: 12;
+$margin: 15px;
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  background-color: $primaryColor;
+  align-content: center;
+  margin: $margin;
+}
+
+article{
+  min-height: 5rem;
+  background: #FFF;
+  border: 1px solid black;
+}
+
+.columns{
+  overflow: hidden;
+  > div {
+    //margin-left: + $margin;
+    margin-right: - $margin;
+    display: flex;
+    flex-wrap: wrap;
+    //justify-content: space-between;
+    > * {
+      flex-grow: 1;
+      margin-bottom: #{$margin};
+      margin-right: $margin;
+    }
+    @for $i from 1 through $nbColumns{
+      .col-#{$i}{
+        flex-basis: calc(100% / #{$nbColumns} * #{$i} - #{$margin} );
+      }
+    }
+  }
+  }
+
+.margins{
+  @for $i from 1 through $nbColumns {
+    .col-#{$i} {
+      margin-left: calc(#{$i} * 100% / #{$nbColumns} - #{$margin});
+    }
+  }
+}
+
+  @media screen and (max-width:1300px){
+    .columns {
+      overflow: hidden;
+    > div {
+    @for $i from 1 through $nbColumns{
+      .col-lg-#{$i}{
+        flex-basis: calc(100% / #{$nbColumns} * #{$i} - #{$margin});
+      }
+    }}}}
+
+@media screen and (max-width:950px){
+  body{
+    background-color: blue;
+  }
+> div {
+  @for $i from 1 through $nbColumns{
+    .col-md-#{$i}{
+      flex-basis: calc(100% / #{$nbColumns} * #{$i} - #{$margin});
+    }
+  } }  }
+
+@media screen and (max-width:600px){
+  body{
+    background-color: darkblue;
+    color: white;
+  }
+> div {
+  @for $i from 1 through $nbColumns{
+    .col-sm-#{$i}{
+      flex-basis: calc(100% / #{$nbColumns} * #{$i} - #{$margin});
+    }
+  }
+}}
